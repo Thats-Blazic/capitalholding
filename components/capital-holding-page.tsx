@@ -1015,19 +1015,9 @@ export default function CapitalHoldingPage() {
         </div>
       </section>
 
-      <section id="contacts" className="scroll-mt-24 border-t border-white/[0.08] bg-[#101211] px-6 py-28 lg:px-12 lg:py-40">
+      <section id="contacts" aria-label="Contacts" className="scroll-mt-24 border-t border-white/[0.08] bg-[#101211] px-6 py-16 lg:px-12 lg:py-24">
         <div className="mx-auto max-w-[1440px]">
-          <p className="eyebrow">06 / Contacts</p>
-          <div className="mt-10 flex flex-col justify-between gap-10 lg:flex-row lg:items-end">
-            <h2 className="max-w-[760px] text-[clamp(3.2rem,7vw,6.4rem)] leading-[1.02] tracking-[-0.05em]">
-              <span className="block">Contact</span>
-              <span className="mt-4 block text-emerald-300 md:mt-6">Us</span>
-            </h2>
-            <p className="max-w-[320px] text-sm leading-6 text-white/45">
-              He founded the firm, and he still reads the mail. Email, LinkedIn, and the three cities.
-            </p>
-          </div>
-          <div className="mt-16 grid border-t border-white/10 md:grid-cols-3">
+          <div className="grid border-t border-white/10 md:grid-cols-3">
             <a
               href={`mailto:${EMAIL}`}
               className="group border-b border-white/10 py-10 md:border-b-0 md:border-r md:pr-10"

@@ -2,10 +2,34 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
+const siteUrl = 'https://capital-holding.org'
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: 'Capital Holding — Investing With a Long View',
   description:
-    'Capital Holding is a founder-led investment firm, established in 2024. One thesis, held from Luxembourg, Dubai, and Miami.',
+    'Capital Holding is a founder-led investment firm. One thesis, held from Luxembourg, Dubai, and Miami.',
+  openGraph: {
+    type: 'website',
+    url: siteUrl,
+    siteName: 'Capital Holding',
+    title: 'Capital Holding',
+    description: 'Investing with a long view. Luxembourg, Dubai, and Miami.',
+    images: [
+      {
+        url: '/og.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Dubai at dusk, the towers over the water',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Capital Holding',
+    description: 'Investing with a long view. Luxembourg, Dubai, and Miami.',
+    images: ['/og.jpg'],
+  },
   generator: 'v0.app',
   icons: {
     icon: [
