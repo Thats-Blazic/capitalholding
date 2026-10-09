@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 248 40" fill="none">
+  <g stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M22 5.5a13 13 0 1 0 0 26" stroke="#F5F5F0" stroke-width="1.6" />
+    <path d="M22 11a7.5 7.5 0 1 0 0 15" stroke="#10B981" stroke-width="1.6" />
+    <path d="M22 5.5H27.6v5.5M22 31.5H27.6V26" stroke="#F5F5F0" stroke-width="1.6" />
+  </g>
+  <text x="48" y="17.5" fill="#F5F5F0" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" letter-spacing="3.6">CAPITAL</text>
+  <text x="48" y="33" fill="#F5F5F0" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" letter-spacing="3.6">HOLDING</text>
+</svg>

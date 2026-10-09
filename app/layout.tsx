@@ -3,8 +3,9 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Capital Holding — Capital With Purpose',
-  description: 'An independent, forward-thinking venture built around strategic perspectives, collective intelligence, and meaningful opportunities.',
+  title: 'Capital Holding — Investing With a Long View',
+  description:
+    'Capital Holding is a founder-led investment firm, established in 2024. One thesis, held from Luxembourg, Dubai, and Miami.',
   generator: 'v0.app',
   icons: {
     icon: [
