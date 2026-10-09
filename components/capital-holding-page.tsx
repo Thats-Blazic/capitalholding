@@ -15,18 +15,30 @@ const navItems = [
   { label: 'Contacts', href: '#contacts' },
 ]
 
-const thesis = [
+const aboutChapters = [
   {
-    label: 'Since 2017',
-    text: 'The managers have invested behind one thesis, and the thesis has not moved.',
+    index: '01',
+    label: 'Our approach',
+    paragraphs: [
+      'We take an active role in the development of our investments, supporting businesses from their early foundations through expansion and maturity. Every partnership is different, which is why our involvement is tailored to the specific needs, objectives, and potential of each business.',
+      'From strategic planning and brand positioning to marketing, customer acquisition, commercial development, and market expansion, we bring together the resources and expertise needed to turn potential into progress. We believe that effective investment requires more than identifying opportunities; it requires the ability to help realise them.',
+    ],
   },
   {
-    label: 'Our vision',
-    text: 'The holdings worth owning can sit quietly for years: real businesses, clear ownership, and work that lives between commerce, technology, and culture.',
+    index: '02',
+    label: 'Beyond financial investment',
+    paragraphs: [
+      'Capital is the starting point, not the entire solution. We contribute time, strategic perspective, practical expertise, and access to relevant networks to help our partners navigate challenges and pursue new opportunities.',
+      'By aligning capital with execution, we aim to strengthen businesses at every level: commercially, operationally, and strategically. We work closely with founders and management teams, supporting informed decisions, sustainable growth, and the development of long-term competitive advantages.',
+    ],
   },
   {
-    label: 'Our mission',
-    text: 'Give a small circle of partners a direct line to that work, and stay long enough for it to matter.',
+    index: '03',
+    label: 'Built for the long term',
+    paragraphs: [
+      'Our investment philosophy is grounded in patience, discipline, and active involvement. We do not approach businesses as short-term transactions or measure success by constant activity. Instead, we focus on building strong foundations, developing meaningful partnerships, and creating value that compounds over time.',
+      'We seek businesses with genuine potential and partners who share our long-term perspective. Through aligned interests, consistent engagement, and a commitment to continuous development, we aim to help transform promising opportunities into enduring businesses.',
+    ],
   },
 ]
 
@@ -304,41 +316,40 @@ function LinkedInIcon() {
   )
 }
 
-function OrbitalObject() {
-  return (
-    <div className="relative aspect-square w-full max-w-[620px] overflow-hidden rounded-full bg-[#0c100e] shadow-[0_0_100px_rgba(16,185,129,0.07)]">
-      <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:52px_52px]" />
-      <div className="absolute left-1/2 top-1/2 size-[62%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 [transform:translate(-50%,-50%)_rotate(29deg)_scaleY(.45)]" />
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 32, repeat: Infinity, ease: 'linear' }}
-        className="absolute left-1/2 top-1/2 h-[86%] w-[36%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-emerald-400/30"
-      />
-      <motion.div
-        animate={{ rotate: -360 }}
-        transition={{ duration: 42, repeat: Infinity, ease: 'linear' }}
-        className="absolute left-1/2 top-1/2 h-[32%] w-[86%] -translate-x-1/2 -translate-y-1/2 rounded-[50%] border border-white/15"
-      />
-      <motion.div
-        animate={{ y: [-12, 12, -12], rotate: [0, 4, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute left-1/2 top-1/2 size-[43%] -translate-x-1/2 -translate-y-1/2 rounded-[44%] bg-[linear-gradient(135deg,#3c4841_0%,#18211c_35%,#0b0f0d_68%,#243e31_100%)] shadow-[inset_-18px_-18px_45px_rgba(0,0,0,.75),inset_12px_8px_30px_rgba(255,255,255,.12),0_0_70px_rgba(16,185,129,.15)] [transform:translate(-50%,-50%)_rotate(45deg)_skew(-8deg,-8deg)]"
-      >
-        <div className="absolute left-[19%] top-[18%] h-[70%] w-[38%] rounded-full border border-white/15 border-r-transparent" />
-      </motion.div>
-      <div className="absolute left-[25%] top-[27%] size-1.5 rounded-full bg-emerald-300 shadow-[0_0_16px_5px_rgba(16,185,129,.35)]" />
-      <div className="absolute bottom-[24%] right-[26%] size-1 rounded-full bg-white/70 shadow-[0_0_13px_3px_rgba(255,255,255,.25)]" />
-      <div className="absolute bottom-[12%] left-[20%] font-mono text-[9px] uppercase tracking-[0.22em] text-white/30">
-        est. 2017 / year 09
-      </div>
-    </div>
-  )
-}
+const heroFrames = [
+  {
+    src: '/gallery/hero-dubai.jpg',
+    alt: 'Dubai at dusk, the Burj Khalifa and the surrounding towers reflected in still water',
+    region: 'Gulf',
+    place: 'Dubai',
+    note: 'The towers',
+    position: 'object-center',
+  },
+  {
+    src: '/gallery/luxembourg.jpg',
+    alt: 'Luxembourg at dusk, from the old ramparts toward the city',
+    region: 'Europe',
+    place: 'Luxembourg',
+    note: 'The ramparts',
+    position: 'object-[28%_center]',
+  },
+  {
+    src: '/gallery/miami.jpg',
+    alt: 'Miami at dusk, the skyline across still water',
+    region: 'Americas',
+    place: 'Miami',
+    note: 'The water',
+    position: 'object-[center_38%]',
+  },
+]
 
 export default function CapitalHoldingPage() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [openProfile, setOpenProfile] = useState<string | null>(null)
+  const [heroIndex, setHeroIndex] = useState(0)
+  const [heroPaused, setHeroPaused] = useState(false)
   const activeProfile = team.find((member) => member.name === openProfile)
+  const heroFrame = heroFrames[heroIndex]
 
   useEffect(() => {
     if (!openProfile) return
@@ -353,6 +364,15 @@ export default function CapitalHoldingPage() {
       document.body.style.overflow = previousOverflow
     }
   }, [openProfile])
+
+  useEffect(() => {
+    if (heroPaused) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    const id = window.setInterval(() => {
+      setHeroIndex((current) => (current + 1) % heroFrames.length)
+    }, 6400)
+    return () => window.clearInterval(id)
+  }, [heroPaused, heroIndex])
 
   return (
     <main className="min-h-screen overflow-hidden bg-[#080909] text-[#f5f5f0]">
@@ -375,7 +395,7 @@ export default function CapitalHoldingPage() {
           <div className="hidden items-center gap-5 lg:flex">
             <span className="hidden items-center gap-2 text-[10px] uppercase tracking-[0.16em] text-white/45 2xl:flex">
               <span className="size-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_2px_rgba(16,185,129,.65)]" />
-              Year three
+              Year Nine
             </span>
             <a
               href="#contacts"
@@ -420,14 +440,14 @@ export default function CapitalHoldingPage() {
 
       <section
         id="overview"
-        className="relative mx-auto grid min-h-screen max-w-[1440px] scroll-mt-24 items-center gap-12 px-6 pb-20 pt-32 lg:grid-cols-[1fr_1.05fr] lg:gap-4 lg:px-12 lg:pt-24"
+        className="relative mx-auto grid min-h-screen max-w-[1440px] scroll-mt-24 items-center gap-14 px-6 pb-20 pt-32 lg:grid-cols-[1fr_1.05fr] lg:gap-16 lg:px-12 lg:pt-24"
       >
         <div className="relative z-10 max-w-[660px]">
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mb-7 flex items-center gap-3 text-[10px] uppercase tracking-[0.28em] text-emerald-300/80"
+            className="mb-10 flex items-center gap-3 text-[10px] uppercase tracking-[0.28em] text-emerald-300/80"
           >
             <span className="h-px w-8 bg-emerald-400" /> Investing with a long view.
           </motion.p>
@@ -435,21 +455,18 @@ export default function CapitalHoldingPage() {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-[clamp(3.6rem,7vw,7.2rem)] font-medium leading-[.92] tracking-[-0.075em]"
+            className="text-[clamp(3.4rem,6.2vw,6.4rem)] font-medium leading-[1.08] tracking-[-0.045em]"
           >
-            Capital with
-            <br />
-            <span className="text-white/95">purpose.</span>
-            <br />
-            <span className="text-emerald-300">Vision without</span>
-            <br />
-            limits.
+            <span className="block">Capital with</span>
+            <span className="mt-2 block text-white/95">purpose.</span>
+            <span className="mt-8 block text-emerald-300 md:mt-10">Vision without</span>
+            <span className="mt-2 block">limits.</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.35 }}
-            className="mt-9 max-w-[480px] text-base leading-7 text-[#969b97]"
+            className="mt-12 max-w-[460px] text-base leading-8 text-[#969b97]"
           >
             One relationship. A founder-led platform for patient capital, held from Luxembourg, Dubai, and Miami.
           </motion.p>
@@ -477,74 +494,136 @@ export default function CapitalHoldingPage() {
             Est. 2017 <span className="px-2 text-emerald-400">·</span> Year three
           </p>
         </div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2 }}
-          className="relative flex items-center justify-center lg:justify-end"
+        <motion.figure
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.1, delay: 0.15 }}
+          className="relative w-full max-w-[540px] justify-self-end"
+          onMouseEnter={() => setHeroPaused(true)}
+          onMouseLeave={() => setHeroPaused(false)}
         >
-          <OrbitalObject />
-        </motion.div>
+          <div className="group relative aspect-[3/4] overflow-hidden border border-white/10">
+            <AnimatePresence initial={false}>
+              <motion.img
+                key={heroFrame.src}
+                src={heroFrame.src}
+                alt={heroFrame.alt}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1.15, ease: 'easeInOut' }}
+                className={`hero-drift absolute inset-0 h-full w-full object-cover ${heroFrame.position}`}
+              />
+            </AnimatePresence>
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_40%,transparent_40%,rgba(8,9,9,0.45)_100%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080909] via-[#080909]/15 to-[#080909]/25" />
+            <div className="absolute inset-x-6 top-6 z-10 flex gap-2">
+              {heroFrames.map((frame, index) => (
+                <button
+                  key={frame.place}
+                  type="button"
+                  aria-label={`Show ${frame.place}`}
+                  aria-current={index === heroIndex ? 'true' : undefined}
+                  onClick={() => setHeroIndex(index)}
+                  className="relative flex h-6 flex-1 items-center"
+                >
+                  <span className="relative h-px w-full bg-white/30">
+                    {index < heroIndex && <span className="absolute inset-0 bg-emerald-300" />}
+                    {index === heroIndex && (
+                      <span key={heroIndex} className="hero-progress absolute inset-y-0 left-0 bg-emerald-300" />
+                    )}
+                  </span>
+                </button>
+              ))}
+            </div>
+            <figcaption className="absolute inset-x-0 bottom-0 z-10 p-6 sm:p-8">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={heroFrame.place}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.45 }}
+                  className="flex items-end justify-between gap-6"
+                >
+                  <div>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-emerald-300">{heroFrame.region}</p>
+                    <p className="mt-2 text-3xl tracking-[-0.05em] sm:text-4xl">{heroFrame.place}</p>
+                  </div>
+                  <p className="pb-1 font-mono text-[9px] uppercase tracking-[0.2em] text-white/40">{heroFrame.note}</p>
+                </motion.div>
+              </AnimatePresence>
+            </figcaption>
+          </div>
+        </motion.figure>
       </section>
 
       <PartnerStrip />
 
       <section id="about" className="scroll-mt-24 bg-[#101211] px-6 py-28 lg:px-12 lg:py-36">
-        <div className="mx-auto grid max-w-[1440px] items-start gap-10 lg:grid-cols-[0.86fr_1.14fr] lg:gap-16">
-          <figure className="relative overflow-hidden">
-            <img
-              src="/gallery/about-study.jpg"
-              alt="A private study at dusk, with a green lamp and a stone window"
-              className="aspect-[3/4] w-full object-cover"
-            />
-            <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-6">
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-emerald-300">The room</p>
-              <p className="mt-2 text-2xl tracking-[-0.04em]">Luxembourg</p>
-            </figcaption>
-          </figure>
-          <div>
+        <div className="mx-auto max-w-[1440px]">
+          <div className="max-w-[920px]">
             <p className="eyebrow">01 / About</p>
-            <h2 className="mt-5 max-w-[720px] text-[clamp(2.2rem,4.6vw,4.6rem)] leading-[.98] tracking-[-0.06em]">
-              Investing with a <span className="text-white/35">long view.</span>
+            <h2 className="mt-5 text-[clamp(2.8rem,5.6vw,5.5rem)] leading-[0.96] tracking-[-0.06em]">
+              More than capital.
             </h2>
-            <p className="mt-8 max-w-[640px] text-lg leading-8 text-[#969b97]">
-              Capital Holding is an independent investment firm. We are not a marketplace, and we are not a new thesis
-              every quarter. We study a situation, decide if it belongs here, and then we hold it.
+            <p className="mt-6 max-w-[16ch] text-[clamp(1.6rem,2.6vw,2.4rem)] leading-[1.2] tracking-[-0.04em] text-white/40">
+              A partner in building lasting value.
             </p>
-            <dl className="mt-10 grid max-w-[520px] grid-cols-3 gap-4 border-y border-white/10 py-6">
-              {[
-                ['2017', 'Founded'],
-                ['09', 'Year of the thesis'],
-                ['03', 'Cities'],
-              ].map(([value, label]) => (
-                <div key={label}>
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-white/35">{label}</dt>
-                  <dd className="mt-2 text-2xl tracking-[-0.04em] text-emerald-300">{value}</dd>
-                </div>
-              ))}
-            </dl>
-            <div className="mt-2 max-w-[720px]">
-              {thesis.map((item) => (
-                <div key={item.label} className="grid gap-3 border-b border-white/10 py-6 sm:grid-cols-[140px_1fr]">
-                  <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-emerald-300">{item.label}</p>
-                  <p className="text-sm leading-7 text-white/70">{item.text}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-8 grid gap-6 sm:grid-cols-[1.1fr_.9fr] sm:items-end">
-              <div className="max-w-[460px] space-y-5 text-base leading-7 text-[#969b97]">
-                <p>
-                  In practice the work is origination, structuring, and stewardship. We underwrite a small number of
-                  businesses and partnerships. We sit with founders and owners on capital and governance.
-                </p>
-                <p>Two years on, that is still the whole description. Fewer positions. Longer holds.</p>
-              </div>
+          </div>
+
+          <div className="mt-16 grid items-center gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
+            <figure className="relative overflow-hidden">
               <img
-                src="/gallery/luxembourg.jpg"
-                alt="Luxembourg at dusk, from the old ramparts toward the city"
-                className="aspect-[16/10] w-full object-cover"
+                src="/gallery/about-study.jpg"
+                alt="A private study at dusk, with a green lamp and a stone window"
+                className="aspect-[4/5] w-full object-cover"
               />
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-6">
+                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-emerald-300">Since 2017</p>
+                <p className="mt-2 text-2xl tracking-[-0.04em]">Capital Holding</p>
+              </figcaption>
+            </figure>
+            <div className="max-w-[640px] space-y-6 text-lg leading-8 text-[#969b97]">
+              <p>
+                Capital Holding is an independent investment firm focused on long-term strategic partnerships and active
+                ownership. Since 2017, we have invested with a clear conviction: lasting value is created not through
+                capital alone, but through the right strategy, the right capabilities, and a shared commitment to
+                building for the future.
+              </p>
+              <p>
+                We partner with ambitious businesses, founders, and entrepreneurs, combining patient capital with
+                strategic guidance, marketing expertise, business development, and operational support. Our role extends
+                beyond financing. We work alongside our partners to identify opportunities, strengthen market
+                positioning, accelerate growth, and build businesses with the foundations to succeed over the long term.
+              </p>
             </div>
+          </div>
+
+          <div className="mt-20 grid gap-px bg-white/10 md:grid-cols-3">
+            {aboutChapters.map((chapter) => (
+              <article key={chapter.label} className="flex flex-col bg-[#080909] p-8 lg:p-10">
+                <span className="font-mono text-[10px] tracking-[0.16em] text-emerald-300">{chapter.index}</span>
+                <h3 className="mt-12 max-w-[14ch] text-3xl leading-[1.1] tracking-[-0.045em]">{chapter.label}</h3>
+                <div className="mt-6 space-y-4 text-sm leading-6 text-white/50">
+                  {chapter.paragraphs.map((paragraph) => (
+                    <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-20 border-t border-white/10 pt-16">
+            <p className="max-w-[560px] text-base leading-7 text-white/55">
+              At Capital Holding, we invest with conviction, contribute beyond capital, and remain committed to the
+              journey.
+            </p>
+            <p className="mt-10 text-[clamp(2.2rem,4.2vw,4rem)] leading-[1.12] tracking-[-0.05em]">
+              <span className="block">From the ground up.</span>
+              <span className="block text-white/40">Alongside our partners.</span>
+              <span className="block text-emerald-300">For the long term.</span>
+            </p>
           </div>
         </div>
       </section>

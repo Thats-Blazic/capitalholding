@@ -196,8 +196,44 @@
   animation-play-state: paused;
 }
 
+@keyframes hero-drift {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.hero-drift {
+  animation: hero-drift 8s ease-out forwards;
+}
+
+@keyframes hero-progress {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+.hero-progress {
+  animation: hero-progress 6.4s linear forwards;
+}
+
+.group:hover .hero-progress {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .partner-track {
+  .partner-track,
+  .hero-drift,
+  .hero-progress {
     animation: none;
+  }
+
+  .hero-progress {
+    width: 100%;
   }
 }
