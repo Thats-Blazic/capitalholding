@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useState, type ReactNode } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { ArrowDownRight, ArrowUpRight, Mail, MapPin, Menu, MoveUpRight, X } from 'lucide-react'
 
 const EMAIL = 'ethan@capital-holding.org'
@@ -10,6 +10,7 @@ const LINKEDIN = 'https://www.linkedin.com/in/ethangoldberg1211'
 const navItems = [
   { label: 'About', href: '#about' },
   { label: 'Investments', href: '#investments' },
+  { label: 'Focus', href: '#focus' },
   { label: 'Team', href: '#team' },
   { label: 'News', href: '#news' },
   { label: 'Contacts', href: '#contacts' },
@@ -39,6 +40,44 @@ const aboutChapters = [
       'Our investment philosophy is grounded in patience, discipline, and active involvement. We do not approach businesses as short-term transactions or measure success by constant activity. Instead, we focus on building strong foundations, developing meaningful partnerships, and creating value that compounds over time.',
       'We seek businesses with genuine potential and partners who share our long-term perspective. Through aligned interests, consistent engagement, and a commitment to continuous development, we aim to help transform promising opportunities into enduring businesses.',
     ],
+  },
+]
+
+const focusAreas = [
+  {
+    index: '01',
+    title: 'Your project',
+    image: '/gallery/focus-project.jpg',
+    alt: 'A private study at dusk, with a building model on the table and the skyline beyond the glass',
+    text: 'We invest in the venture you bring us. A founder, a real business, and a reason to hold it. Capital comes with the work beside it: strategy, relationships, and the patience to stay.',
+  },
+  {
+    index: '02',
+    title: 'Real estate',
+    image: '/gallery/focus-estate.jpg',
+    alt: 'Glass towers reflected in still water at dusk',
+    text: 'Property, and the businesses tied to it. Clear ownership, a structure that can travel, and a hold that can sit quietly.',
+  },
+  {
+    index: '03',
+    title: 'Web3',
+    image: '/gallery/focus-web3.jpg',
+    alt: 'A fine network of lights against a dusk sky',
+    text: 'Networks and the companies building on them. We look for a use that is already in the world, and a team we can sit with.',
+  },
+  {
+    index: '04',
+    title: 'Artificial intelligence',
+    image: '/gallery/focus-ai.jpg',
+    alt: 'A glass form holding a dusk skyline',
+    text: 'Products that change how a business works. We stay where the tool is in the market, with customers and a path that can compound.',
+  },
+  {
+    index: '05',
+    title: 'Blockchain',
+    image: '/gallery/focus-chain.jpg',
+    alt: 'Two glass blocks with a green seam of light, set against the skyline',
+    text: 'Infrastructure and applications with a reason to exist after the cycle. The same standard we use on every other holding.',
   },
 ]
 
@@ -197,87 +236,32 @@ const news = [
   },
 ]
 
-const partnerMarks: { name: string; icon: () => ReactNode }[] = [
-  {
-    name: 'Halden',
-    icon: () => (
-      <svg viewBox="0 0 28 28" className="size-6" fill="none" aria-hidden="true">
-        <circle cx="14" cy="14" r="12" stroke="currentColor" strokeWidth="1.2" />
-        <path d="M9 8.5h4.2a4 4 0 0 1 0 8H9V8.5Zm0 8v3" stroke="currentColor" strokeWidth="1.2" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Vesper',
-    icon: () => (
-      <svg viewBox="0 0 28 28" className="size-6" fill="none" aria-hidden="true">
-        <path d="M5 7.5 14 22 23 7.5" stroke="currentColor" strokeWidth="1.2" />
-        <path d="M9.2 7.5h9.6" stroke="currentColor" strokeWidth="1.2" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Northline',
-    icon: () => (
-      <svg viewBox="0 0 28 28" className="size-6" fill="none" aria-hidden="true">
-        <path d="M4 14h20M14 5v6M14 17v6" stroke="currentColor" strokeWidth="1.2" />
-        <circle cx="14" cy="14" r="2" fill="currentColor" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Alder',
-    icon: () => (
-      <svg viewBox="0 0 28 28" className="size-6" fill="none" aria-hidden="true">
-        <rect x="4" y="4" width="20" height="20" stroke="currentColor" strokeWidth="1.2" />
-        <path d="M9 20 14 8l5 12M10.4 16h7.2" stroke="currentColor" strokeWidth="1.2" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Marlowe',
-    icon: () => (
-      <svg viewBox="0 0 28 28" className="size-6" fill="none" aria-hidden="true">
-        <path d="M4 21V8l10 8 10-8v13" stroke="currentColor" strokeWidth="1.2" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Ostara',
-    icon: () => (
-      <svg viewBox="0 0 28 28" className="size-6" fill="none" aria-hidden="true">
-        <circle cx="14" cy="14" r="8" stroke="currentColor" strokeWidth="1.2" />
-        <circle cx="14" cy="14" r="2" fill="currentColor" />
-        <path d="M14 2.5v3.2M14 22.3v3.2M2.5 14h3.2M22.3 14h3.2" stroke="currentColor" strokeWidth="1.2" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Pell & Co',
-    icon: () => (
-      <svg viewBox="0 0 28 28" className="size-6" fill="none" aria-hidden="true">
-        <path d="M8 20c4-1 6-4 6-8s-2-6-6-6M16 8c2 2 3 4 3 6s-1 4-3 6" stroke="currentColor" strokeWidth="1.2" />
-      </svg>
-    ),
-  },
-  {
-    name: 'Cinder',
-    icon: () => (
-      <svg viewBox="0 0 28 28" className="size-6" fill="none" aria-hidden="true">
-        <path d="M14 3.5 24 14 14 24.5 4 14 14 3.5Z" stroke="currentColor" strokeWidth="1.2" />
-        <path d="M14 9.5 18.5 14 14 18.5 9.5 14 14 9.5Z" stroke="currentColor" strokeWidth="1.2" />
-      </svg>
-    ),
-  },
+const partnerMarks: { name: string; src: string }[] = [
+  { name: 'Deloitte', src: '/partners/deloitte.svg' },
+  { name: 'McKinsey', src: '/partners/mckinsey.svg' },
+  { name: 'Accenture', src: '/partners/accenture.svg' },
+  { name: 'Publicis Groupe', src: '/partners/publicis.svg' },
+  { name: 'WPP', src: '/partners/wpp.svg' },
+  { name: 'Capgemini', src: '/partners/capgemini.svg' },
+  { name: 'Siemens', src: '/partners/siemens.svg' },
+  { name: 'KPMG', src: '/partners/kpmg.svg' },
 ]
 
 function PartnerMarks({ hidden = false }: { hidden?: boolean }) {
   return (
     <div className="flex" aria-hidden={hidden}>
       {partnerMarks.map((partner) => (
-        <div key={partner.name} className="flex h-14 shrink-0 items-center gap-3 px-10 text-white/50" role={hidden ? undefined : 'img'} aria-label={hidden ? undefined : partner.name}>
-          {partner.icon()}
-          <span className="text-[13px] font-medium uppercase tracking-[0.32em]">{partner.name}</span>
+        <div
+          key={partner.name}
+          className="flex h-16 shrink-0 items-center px-10"
+          role={hidden ? undefined : 'img'}
+          aria-label={hidden ? undefined : partner.name}
+        >
+          <img
+            src={partner.src}
+            alt=""
+            className="h-7 w-auto max-w-[158px] object-contain opacity-80 brightness-0 invert"
+          />
         </div>
       ))}
     </div>
@@ -299,6 +283,109 @@ function PartnerStrip() {
             <PartnerMarks hidden />
           </div>
         </div>
+      </div>
+    </section>
+  )
+}
+
+const firmStats = [
+  { value: 75, prefix: '€', suffix: 'M', label: 'Portfolio Value' },
+  { value: 60, prefix: '€', suffix: 'M', label: 'Capital Invested' },
+  { value: 84, prefix: '', suffix: '', label: 'Projects Invested In' },
+  { value: 19, prefix: '', suffix: '', label: 'Successful Exits' },
+]
+
+function CountUp({
+  value,
+  prefix,
+  suffix,
+  start,
+  delay = 0,
+}: {
+  value: number
+  prefix: string
+  suffix: string
+  start: boolean
+  delay?: number
+}) {
+  const reduceMotion = useReducedMotion()
+  const [display, setDisplay] = useState(0)
+
+  useEffect(() => {
+    if (!start) return
+    if (reduceMotion) {
+      setDisplay(value)
+      return
+    }
+    let frame = 0
+    const wait = window.setTimeout(() => {
+      const duration = 1700
+      const startedAt = performance.now()
+      const tick = (now: number) => {
+        const progress = Math.min(1, (now - startedAt) / duration)
+        const eased = 1 - (1 - progress) ** 3
+        setDisplay(Math.round(eased * value))
+        if (progress < 1) frame = requestAnimationFrame(tick)
+      }
+      frame = requestAnimationFrame(tick)
+    }, delay)
+    return () => {
+      window.clearTimeout(wait)
+      cancelAnimationFrame(frame)
+    }
+  }, [start, value, delay, reduceMotion])
+
+  return (
+    <span className="tabular-nums">
+      {prefix}
+      {display}
+      {suffix}
+    </span>
+  )
+}
+
+function StatsBand() {
+  const reduceMotion = useReducedMotion()
+  const ref = useRef<HTMLElement>(null)
+  const [started, setStarted] = useState(false)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    if (reduceMotion) {
+      setStarted(true)
+      return
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStarted(true)
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.45 },
+    )
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [reduceMotion])
+
+  return (
+    <section ref={ref} aria-label="Figures" className="border-b border-white/[0.08] bg-[#080909] px-6 py-14 lg:px-12 lg:py-20">
+      <div className="mx-auto grid max-w-[1440px] gap-px bg-white/10 grid-cols-2 lg:grid-cols-4">
+        {firmStats.map((stat, index) => (
+          <div key={stat.label} className="bg-[#080909] px-2 py-8 sm:px-6 lg:px-8">
+            <p className="text-[clamp(2.6rem,4.4vw,4.4rem)] leading-none tracking-[-0.055em]">
+              <CountUp
+                value={stat.value}
+                prefix={stat.prefix}
+                suffix={stat.suffix}
+                start={started}
+                delay={index * 90}
+              />
+            </p>
+            <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.18em] text-emerald-300/80">{stat.label}</p>
+          </div>
+        ))}
       </div>
     </section>
   )
@@ -345,9 +432,11 @@ const heroFrames = [
 
 export default function CapitalHoldingPage() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [sectionTarget, setSectionTarget] = useState<string | null>(null)
   const [openProfile, setOpenProfile] = useState<string | null>(null)
   const [heroIndex, setHeroIndex] = useState(0)
   const [heroPaused, setHeroPaused] = useState(false)
+  const reduceMotion = useReducedMotion()
   const activeProfile = team.find((member) => member.name === openProfile)
   const heroFrame = heroFrames[heroIndex]
 
@@ -366,6 +455,25 @@ export default function CapitalHoldingPage() {
   }, [openProfile])
 
   useEffect(() => {
+    if (menuOpen || !sectionTarget) return
+    const id = sectionTarget
+    const timer = window.setTimeout(() => {
+      const section = document.getElementById(id)
+      if (section) {
+        const top = section.getBoundingClientRect().top + window.scrollY - 88
+        const root = document.documentElement
+        const previous = root.style.scrollBehavior
+        root.style.scrollBehavior = 'auto'
+        window.scrollTo(0, Math.max(0, top))
+        root.style.scrollBehavior = previous
+      }
+      window.history.pushState(null, '', `#${id}`)
+      setSectionTarget(null)
+    }, 40)
+    return () => window.clearTimeout(timer)
+  }, [menuOpen, sectionTarget])
+
+  useEffect(() => {
     if (heroPaused) return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const id = window.setInterval(() => {
@@ -375,8 +483,8 @@ export default function CapitalHoldingPage() {
   }, [heroPaused, heroIndex])
 
   return (
-    <main className="min-h-screen overflow-hidden bg-[#080909] text-[#f5f5f0]">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/[0.07] bg-[#080909]/75 backdrop-blur-xl">
+    <>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/[0.07] bg-[#080909]/90 backdrop-blur-xl">
         <div className="mx-auto flex h-[76px] max-w-[1440px] items-center justify-between gap-6 px-6 lg:px-12">
           <a href="#overview" className="shrink-0">
             <Logo />
@@ -406,37 +514,41 @@ export default function CapitalHoldingPage() {
             </a>
           </div>
           <button
-            className="lg:hidden"
-            onClick={() => setMenuOpen(!menuOpen)}
+            type="button"
+            className="relative z-[60] flex size-12 items-center justify-center lg:hidden"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMenuOpen((open) => !open)}
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           >
             {menuOpen ? <X /> : <Menu />}
           </button>
         </div>
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.nav
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              className="overflow-hidden border-t border-white/[0.07] bg-[#0b0d0c] lg:hidden"
-            >
-              <div className="flex flex-col gap-5 px-6 py-7">
-                {navItems.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    onClick={() => setMenuOpen(false)}
-                    className="text-xs uppercase tracking-[0.2em] text-white/65"
-                  >
-                    {item.label}
-                  </a>
-                ))}
-              </div>
-            </motion.nav>
-          )}
-        </AnimatePresence>
       </header>
+      {menuOpen && (
+        <nav
+          id="mobile-menu"
+          className="fixed inset-x-0 bottom-0 top-[76px] z-40 overflow-y-auto bg-[#080909] px-6 py-6 lg:hidden"
+        >
+          <div className="flex flex-col">
+            {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={(event) => {
+                    event.preventDefault()
+                    setSectionTarget(item.href.slice(1))
+                    setMenuOpen(false)
+                  }}
+                  className="border-b border-white/10 py-5 text-sm uppercase tracking-[0.2em] text-white/80"
+                >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </nav>
+      )}
+    <main className="min-h-screen overflow-hidden bg-[#080909] text-[#f5f5f0]">
 
       <section
         id="overview"
@@ -559,6 +671,8 @@ export default function CapitalHoldingPage() {
       </section>
 
       <PartnerStrip />
+
+      <StatsBand />
 
       <section id="about" className="scroll-mt-24 bg-[#101211] px-6 py-28 lg:px-12 lg:py-36">
         <div className="mx-auto max-w-[1440px]">
@@ -688,11 +802,106 @@ export default function CapitalHoldingPage() {
         </div>
       </section>
 
-      <section id="team" className="scroll-mt-24 border-t border-white/[0.08] bg-[#101211] px-6 py-28 lg:px-12 lg:py-36">
+      <section id="focus" className="scroll-mt-24 border-t border-white/[0.08] bg-[#101211] px-6 py-28 lg:px-12 lg:py-36">
+        <div className="mx-auto max-w-[1440px]">
+          <motion.div
+            className="flex flex-col justify-between gap-8 sm:flex-row sm:items-end"
+            {...(reduceMotion
+              ? {}
+              : {
+                  initial: { opacity: 0, y: 24 },
+                  whileInView: { opacity: 1, y: 0 },
+                  viewport: { once: true, margin: '-80px' },
+                  transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
+                })}
+          >
+            <div>
+              <p className="eyebrow">03 / Focus</p>
+              <h2 className="mt-5 max-w-[760px] text-4xl tracking-[-0.06em] md:text-6xl">
+                Where we
+                <br />
+                <span className="text-white/35">invest.</span>
+              </h2>
+            </div>
+            <p className="max-w-[320px] text-sm leading-6 text-white/45">
+              Your project first. Then the markets we already work in: real estate, Web3, artificial intelligence, and
+              blockchain.
+            </p>
+          </motion.div>
+
+          <motion.article
+            className="mt-14 grid overflow-hidden bg-[#080909] lg:grid-cols-[1.35fr_0.85fr]"
+            {...(reduceMotion
+              ? {}
+              : {
+                  initial: { opacity: 0, y: 28 },
+                  whileInView: { opacity: 1, y: 0 },
+                  viewport: { once: true, margin: '-80px' },
+                  transition: { duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] as const },
+                })}
+          >
+            <figure className="relative aspect-[16/10] overflow-hidden lg:aspect-auto lg:min-h-[480px]">
+              <img
+                src={focusAreas[0].image}
+                alt={focusAreas[0].alt}
+                className="focus-drift h-full w-full object-cover"
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080909] via-transparent to-black/10 lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[#080909]" />
+            </figure>
+            <div className="flex flex-col justify-end p-8 lg:py-12 lg:pr-12 lg:pl-4">
+              <p className="font-mono text-[10px] tracking-[0.18em] text-emerald-300">{focusAreas[0].index}</p>
+              <h3 className="mt-6 text-[clamp(2.6rem,4vw,4.2rem)] leading-[0.95] tracking-[-0.05em]">
+                {focusAreas[0].title}.
+              </h3>
+              <p className="mt-6 max-w-[420px] text-base leading-7 text-white/60">{focusAreas[0].text}</p>
+            </div>
+          </motion.article>
+
+          <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {focusAreas.slice(1).map((area, index) => (
+              <motion.article
+                key={area.title}
+                className="focus-card group"
+                {...(reduceMotion
+                  ? {}
+                  : {
+                      initial: { opacity: 0, y: 32 },
+                      whileInView: { opacity: 1, y: 0 },
+                      viewport: { once: true, margin: '-60px' },
+                      transition: {
+                        duration: 0.7,
+                        delay: 0.08 * index,
+                        ease: [0.22, 1, 0.36, 1] as const,
+                      },
+                    })}
+              >
+                <div className="relative aspect-[3/4] overflow-hidden bg-[#080909]">
+                  <img
+                    src={area.image}
+                    alt={area.alt}
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/15 to-black/25" />
+                  <div className="absolute inset-x-0 bottom-0 p-6">
+                    <span className="font-mono text-[10px] tracking-[0.18em] text-emerald-300">{area.index}</span>
+                    <h3 className="mt-3 text-3xl tracking-[-0.045em]">{area.title}</h3>
+                  </div>
+                  <span className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-emerald-300 transition-transform duration-500 group-hover:scale-x-100" />
+                </div>
+                <p className="mt-4 text-sm leading-6 text-white/50 transition-colors duration-500 group-hover:text-white/70">
+                  {area.text}
+                </p>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="team" className="scroll-mt-24 border-t border-white/[0.08] px-6 py-28 lg:px-12 lg:py-36">
         <div className="mx-auto max-w-[1440px]">
           <div className="flex flex-col justify-between gap-8 border-b border-white/10 pb-12 sm:flex-row sm:items-end">
             <div>
-              <p className="eyebrow">03 / Team</p>
+              <p className="eyebrow">04 / Team</p>
               <h2 className="mt-5 text-4xl tracking-[-0.06em] md:text-6xl">
                 Six minds.
                 <br />
@@ -759,7 +968,7 @@ export default function CapitalHoldingPage() {
         <div className="mx-auto max-w-[1440px]">
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <div>
-              <p className="eyebrow">04 / News</p>
+              <p className="eyebrow">05 / News</p>
               <h2 className="mt-5 max-w-[640px] text-4xl tracking-[-0.06em] md:text-6xl">
                 The record,
                 <br />
@@ -808,12 +1017,11 @@ export default function CapitalHoldingPage() {
 
       <section id="contacts" className="scroll-mt-24 border-t border-white/[0.08] bg-[#101211] px-6 py-28 lg:px-12 lg:py-40">
         <div className="mx-auto max-w-[1440px]">
-          <p className="eyebrow">05 / Contacts</p>
-          <div className="mt-8 flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-            <h2 className="max-w-[760px] text-[clamp(3.2rem,7vw,6.4rem)] leading-[.9] tracking-[-0.08em]">
-              Write to
-              <br />
-              <span className="text-emerald-300">Ethan.</span>
+          <p className="eyebrow">06 / Contacts</p>
+          <div className="mt-10 flex flex-col justify-between gap-10 lg:flex-row lg:items-end">
+            <h2 className="max-w-[760px] text-[clamp(3.2rem,7vw,6.4rem)] leading-[1.02] tracking-[-0.05em]">
+              <span className="block">Contact</span>
+              <span className="mt-4 block text-emerald-300 md:mt-6">Us</span>
             </h2>
             <p className="max-w-[320px] text-sm leading-6 text-white/45">
               He founded the firm, and he still reads the mail. Email, LinkedIn, and the three cities.
@@ -955,5 +1163,6 @@ export default function CapitalHoldingPage() {
         )}
       </AnimatePresence>
     </main>
+    </>
   )
 }

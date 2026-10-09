@@ -209,6 +209,19 @@
   animation: hero-drift 8s ease-out forwards;
 }
 
+@keyframes focus-drift {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.06);
+  }
+}
+
+.focus-drift {
+  animation: focus-drift 18s ease-in-out infinite alternate;
+}
+
 @keyframes hero-progress {
   from {
     width: 0%;
@@ -229,8 +242,11 @@
 @media (prefers-reduced-motion: reduce) {
   .partner-track,
   .hero-drift,
-  .hero-progress {
+  .hero-progress,
+  .focus-drift,
+  .focus-card img {
     animation: none;
+    transition: none;
   }
 
   .hero-progress {
