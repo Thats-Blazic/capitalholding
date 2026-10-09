@@ -17,7 +17,7 @@ const navItems = [
 
 const thesis = [
   {
-    label: 'Since 2024',
+    label: 'Since 2017',
     text: 'The managers have invested behind one thesis, and the thesis has not moved.',
   },
   {
@@ -99,7 +99,7 @@ const team: {
     name: 'Mira Chen',
     role: 'Managing Partner | Strategic Leadership',
     location: 'Luxembourg',
-    since: 'Since 2024',
+    since: 'Since 2017',
     bio: 'Works with the CEO on major decisions, investment evaluations, and the long-term direction of the firm.',
     paragraphs: [
       'Working closely with the CEO, the Managing Partner contributes to major business decisions, investment evaluations, and the company\u2019s long-term strategic direction.',
@@ -112,7 +112,7 @@ const team: {
     name: 'Julian Adeyemi',
     role: 'Investment Broker | Business Development',
     location: 'Miami',
-    since: 'Since 2024',
+    since: 'Since 2017',
     bio: 'Sources opportunities, opens relationships, and connects the firm with businesses and partners.',
     paragraphs: [
       'Focused on identifying potential investment opportunities, establishing professional relationships, and connecting the company with promising businesses and strategic partners.',
@@ -125,7 +125,7 @@ const team: {
     name: 'Hugo Moreau',
     role: 'Investment Broker | Business Development',
     location: 'Luxembourg',
-    since: 'Joined 2025',
+    since: 'Joined 2017',
     bio: 'Sources opportunities in Europe and brings businesses and partners into the same conversation as Miami.',
     paragraphs: [
       'Focused on identifying potential investment opportunities across Europe, establishing professional relationships, and connecting the company with promising businesses and strategic partners.',
@@ -138,7 +138,7 @@ const team: {
     name: 'Sofia Alvarez',
     role: 'Investment Advisor | Research & Strategy',
     location: 'Dubai',
-    since: 'Joined 2025',
+    since: 'Joined 2017',
     bio: 'Researches markets, weighs risk, and brings a strategic view to each opportunity.',
     paragraphs: [
       'Focused on researching market trends, evaluating business opportunities, and providing strategic insights to support informed decision-making.',
@@ -151,7 +151,7 @@ const team: {
     name: 'Leo Bergström',
     role: 'Operations Manager | Business Operations',
     location: 'Dubai',
-    since: 'Joined 2025',
+    since: 'Joined 2017',
     bio: 'Keeps the work organized, the process clear, and the day aligned with the firm\u2019s priorities.',
     paragraphs: [
       'Responsible for coordinating operational activities, supporting project execution, and maintaining efficient internal processes.',
@@ -163,21 +163,21 @@ const team: {
 
 const news = [
   {
-    date: '12 March 2026',
+    date: '12 March 2017',
     place: 'Miami',
     title: 'The Americas desk is open.',
     text: 'Conversations that used to travel now start on the water. The memo is the same one that leaves Luxembourg. The city changed. The standard did not.',
     image: '/gallery/news-miami.jpg',
   },
   {
-    date: '4 November 2025',
+    date: '4 November 2017',
     place: 'Dubai',
     title: 'A Gulf presence, for partnerships that need the room.',
     text: 'Some relationships do not survive a video call. Dubai is where those meetings happen. The thesis was already a year old when the door opened.',
     image: '/gallery/news-dubai.jpg',
   },
   {
-    date: '15 January 2024',
+    date: '15 January 2017',
     place: 'The firm',
     title: 'Capital Holding is established.',
     text: 'One thesis, written down on the first day: fewer positions, longer holds, and a team small enough that every partner can still explain every holding.',
@@ -329,7 +329,7 @@ function OrbitalObject() {
       <div className="absolute left-[25%] top-[27%] size-1.5 rounded-full bg-emerald-300 shadow-[0_0_16px_5px_rgba(16,185,129,.35)]" />
       <div className="absolute bottom-[24%] right-[26%] size-1 rounded-full bg-white/70 shadow-[0_0_13px_3px_rgba(255,255,255,.25)]" />
       <div className="absolute bottom-[12%] left-[20%] font-mono text-[9px] uppercase tracking-[0.22em] text-white/30">
-        est. 2024 / year 03
+        est. 2017 / year 09
       </div>
     </div>
   )
@@ -474,7 +474,7 @@ export default function CapitalHoldingPage() {
             </a>
           </motion.div>
           <p className="mt-16 font-mono text-[9px] uppercase tracking-[0.24em] text-white/30">
-            Est. 2024 <span className="px-2 text-emerald-400">·</span> Year three
+            Est. 2017 <span className="px-2 text-emerald-400">·</span> Year three
           </p>
         </div>
         <motion.div
@@ -513,8 +513,8 @@ export default function CapitalHoldingPage() {
             </p>
             <dl className="mt-10 grid max-w-[520px] grid-cols-3 gap-4 border-y border-white/10 py-6">
               {[
-                ['2024', 'Founded'],
-                ['03', 'Year of the thesis'],
+                ['2017', 'Founded'],
+                ['09', 'Year of the thesis'],
                 ['03', 'Cities'],
               ].map(([value, label]) => (
                 <div key={label}>
@@ -809,7 +809,7 @@ export default function CapitalHoldingPage() {
           </div>
           <div className="flex flex-col justify-between gap-3 border-t border-white/[0.08] pt-6 sm:flex-row sm:items-center">
             <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/30">
-              © 2026 Capital Holding. All rights reserved.
+              © 2017 Capital Holding. All rights reserved.
             </p>
             <p className="text-[10px] uppercase tracking-[0.16em] text-white/30">Built for the long view</p>
           </div>
