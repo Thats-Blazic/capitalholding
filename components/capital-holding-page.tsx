@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { ArrowDownRight, ArrowUpRight, Mail, MapPin, Menu, MoveUpRight, X } from 'lucide-react'
 
-const EMAIL = 'ethan@capital-holding.org'
+const EMAIL = 'support@capital-holding.org'
 const LINKEDIN = 'https://www.linkedin.com/in/ethangoldberg1211'
 
 const navItems = [
@@ -160,7 +160,7 @@ const team: {
   },
   {
     index: '03',
-    name: 'Julian Adeyemi',
+    name: 'Levy Abramowski',
     role: 'Investment Broker | Business Development',
     location: 'Miami',
     since: 'Since 2017',
@@ -173,7 +173,7 @@ const team: {
   },
   {
     index: '04',
-    name: 'Hugo Moreau',
+    name: 'Rio Lerner',
     role: 'Investment Broker | Business Development',
     location: 'Luxembourg',
     since: 'Joined 2017',
@@ -1017,7 +1017,7 @@ export default function CapitalHoldingPage() {
 
       <section id="contacts" aria-label="Contacts" className="scroll-mt-24 border-t border-white/[0.08] bg-[#101211] px-6 py-16 lg:px-12 lg:py-24">
         <div className="mx-auto max-w-[1440px]">
-          <div className="grid border-t border-white/10 md:grid-cols-3">
+          <div className="grid border-t border-white/10 md:grid-cols-2">
             <a
               href={`mailto:${EMAIL}`}
               className="group border-b border-white/10 py-10 md:border-b-0 md:border-r md:pr-10"
@@ -1031,27 +1031,11 @@ export default function CapitalHoldingPage() {
                 {EMAIL}
               </p>
             </a>
-            <a
-              href={LINKEDIN}
-              target="_blank"
-              rel="noreferrer"
-              className="group border-b border-white/10 py-10 md:border-b-0 md:border-r md:px-10"
-            >
-              <span className="flex items-center justify-between text-emerald-300">
-                <LinkedInIcon />
-                <ArrowUpRight className="size-4 text-white/30 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-emerald-300" />
-              </span>
-              <p className="mt-12 font-mono text-[10px] uppercase tracking-[0.18em] text-white/35">LinkedIn</p>
-              <p className="mt-3 text-xl tracking-[-0.03em] text-white/85 group-hover:text-emerald-300 sm:text-2xl">
-                ethangoldberg1211
-              </p>
-            </a>
             <div className="py-10 md:pl-10">
               <MapPin className="size-4 text-emerald-300" strokeWidth={1.5} />
-              <p className="mt-12 font-mono text-[10px] uppercase tracking-[0.18em] text-white/35">Platform</p>
-              <p className="mt-3 text-xl tracking-[-0.03em] text-white/85 sm:text-2xl">Luxembourg</p>
+              <p className="mt-12 font-mono text-[10px] uppercase tracking-[0.18em] text-white/35">Location</p>
+              <p className="mt-3 text-xl tracking-[-0.03em] text-white/85 sm:text-2xl">Sheikh Zayed Rd - Zaa'beel Second</p>
               <p className="mt-1 text-xl tracking-[-0.03em] text-white/85 sm:text-2xl">Dubai</p>
-              <p className="mt-1 text-xl tracking-[-0.03em] text-white/85 sm:text-2xl">Miami</p>
             </div>
           </div>
         </div>
@@ -1074,15 +1058,6 @@ export default function CapitalHoldingPage() {
                 </a>
               ))}
             </nav>
-            <a
-              href={LINKEDIN}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Ethan Goldberg on LinkedIn"
-              className="flex size-9 items-center justify-center border border-white/15 text-white/60 transition-colors hover:border-emerald-400 hover:text-emerald-300"
-            >
-              <LinkedInIcon />
-            </a>
           </div>
           <div className="flex flex-col justify-between gap-3 border-t border-white/[0.08] pt-6 sm:flex-row sm:items-center">
             <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/30">
