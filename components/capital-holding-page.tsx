@@ -674,71 +674,146 @@ export default function CapitalHoldingPage() {
 
       <StatsBand />
 
-      <section id="about" className="scroll-mt-24 bg-[#101211] px-6 py-28 lg:px-12 lg:py-36">
+      <section id="about" className="scroll-mt-24 border-t border-white/[0.08] px-6 py-28 lg:px-12 lg:py-40">
         <div className="mx-auto max-w-[1440px]">
-          <div className="max-w-[920px]">
+          <motion.div
+            {...(reduceMotion
+              ? {}
+              : {
+                  initial: { opacity: 0, y: 24 },
+                  whileInView: { opacity: 1, y: 0 },
+                  viewport: { once: true, margin: '-80px' },
+                  transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const },
+                })}
+          >
             <p className="eyebrow">01 / About</p>
-            <h2 className="mt-5 text-[clamp(2.8rem,5.6vw,5.5rem)] leading-[0.96] tracking-[-0.06em]">
-              More than capital.
-            </h2>
-            <p className="mt-6 max-w-[16ch] text-[clamp(1.6rem,2.6vw,2.4rem)] leading-[1.2] tracking-[-0.04em] text-white/40">
-              A partner in building lasting value.
-            </p>
-          </div>
+            <div className="mt-8 grid items-end gap-8 lg:grid-cols-[1.35fr_0.65fr] lg:gap-16">
+              <h2 className="text-[clamp(3.2rem,7.2vw,7rem)] leading-[0.88] tracking-[-0.07em]">
+                More than
+                <span className="mt-1 block text-white/28">capital.</span>
+              </h2>
+              <p className="max-w-[16ch] text-[clamp(1.55rem,2.2vw,2.15rem)] leading-[1.12] tracking-[-0.045em] text-white/70 lg:justify-self-end lg:pb-3">
+                A partner in building lasting value.
+              </p>
+            </div>
+            <div className="mt-10 h-px bg-gradient-to-r from-emerald-300 via-white/15 to-transparent" />
+          </motion.div>
 
-          <div className="mt-16 grid items-center gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
-            <figure className="relative overflow-hidden">
-              <img
-                src="/gallery/about-study.jpg"
-                alt="A private study at dusk, with a green lamp and a stone window"
-                className="aspect-[4/5] w-full object-cover"
-              />
-              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent p-6">
-                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-emerald-300">Since 2017</p>
-                <p className="mt-2 text-2xl tracking-[-0.04em]">Capital Holding</p>
-              </figcaption>
-            </figure>
-            <div className="max-w-[640px] space-y-6 text-lg leading-8 text-[#969b97]">
-              <p>
+          <div className="mt-14 grid items-start gap-12 lg:mt-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+            <motion.div
+              className="max-w-[640px]"
+              {...(reduceMotion
+                ? {}
+                : {
+                    initial: { opacity: 0, y: 28 },
+                    whileInView: { opacity: 1, y: 0 },
+                    viewport: { once: true, margin: '-60px' },
+                    transition: { duration: 0.75, delay: 0.05, ease: [0.22, 1, 0.36, 1] as const },
+                  })}
+            >
+              <p className="text-xl leading-9 text-[#e4e7e3] md:text-[1.35rem] md:leading-[2.15rem]">
                 Capital Holding is an independent investment firm focused on long-term strategic partnerships and active
                 ownership. Since 2017, we have invested with a clear conviction: lasting value is created not through
                 capital alone, but through the right strategy, the right capabilities, and a shared commitment to
                 building for the future.
               </p>
-              <p>
+              <p className="mt-8 border-l border-emerald-300/70 pl-6 text-base leading-8 text-white/55 md:text-lg">
                 We partner with ambitious businesses, founders, and entrepreneurs, combining patient capital with
                 strategic guidance, marketing expertise, business development, and operational support. Our role extends
                 beyond financing. We work alongside our partners to identify opportunities, strengthen market
                 positioning, accelerate growth, and build businesses with the foundations to succeed over the long term.
               </p>
-            </div>
+            </motion.div>
+
+            <motion.figure
+              className="relative"
+              {...(reduceMotion
+                ? {}
+                : {
+                    initial: { opacity: 0, y: 28 },
+                    whileInView: { opacity: 1, y: 0 },
+                    viewport: { once: true, margin: '-60px' },
+                    transition: { duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] as const },
+                  })}
+            >
+              <div className="relative overflow-hidden">
+                <img
+                  src="/gallery/about-study.jpg"
+                  alt="A private study at dusk, with a green lamp and a stone window"
+                  className="about-drift aspect-[4/5] w-full object-cover sm:aspect-[5/4] lg:aspect-[4/5]"
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080909] via-transparent to-black/20" />
+                <span className="pointer-events-none absolute top-4 left-4 h-8 w-8 border-t border-l border-emerald-300/80" />
+                <span className="pointer-events-none absolute right-4 bottom-4 h-8 w-8 border-r border-b border-white/50" />
+              </div>
+              <figcaption className="mt-5 flex items-end justify-between gap-6">
+                <div>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-emerald-300">Since 2017</p>
+                  <p className="mt-2 text-2xl tracking-[-0.04em]">Capital Holding</p>
+                </div>
+                <span className="mb-1 h-px w-16 bg-emerald-300/70" />
+              </figcaption>
+            </motion.figure>
           </div>
 
-          <div className="mt-20 grid gap-px bg-white/10 md:grid-cols-3">
-            {aboutChapters.map((chapter) => (
-              <article key={chapter.label} className="flex flex-col bg-[#080909] p-8 lg:p-10">
-                <span className="font-mono text-[10px] tracking-[0.16em] text-emerald-300">{chapter.index}</span>
-                <h3 className="mt-12 max-w-[14ch] text-3xl leading-[1.1] tracking-[-0.045em]">{chapter.label}</h3>
-                <div className="mt-6 space-y-4 text-sm leading-6 text-white/50">
+          <div className="mt-24 lg:mt-32">
+            {aboutChapters.map((chapter, index) => (
+              <motion.article
+                key={chapter.label}
+                className="group grid gap-6 border-t border-white/10 py-12 last:border-b lg:grid-cols-[7.5rem_minmax(0,0.72fr)_minmax(0,1.28fr)] lg:items-start lg:gap-14 lg:py-16"
+                {...(reduceMotion
+                  ? {}
+                  : {
+                      initial: { opacity: 0, y: 28 },
+                      whileInView: { opacity: 1, y: 0 },
+                      viewport: { once: true, margin: '-40px' },
+                      transition: {
+                        duration: 0.7,
+                        delay: 0.06 * index,
+                        ease: [0.22, 1, 0.36, 1] as const,
+                      },
+                    })}
+              >
+                <span className="font-mono text-[clamp(2.4rem,4vw,3.4rem)] leading-none tracking-[-0.06em] text-emerald-300 transition-colors duration-500 group-hover:text-white">
+                  {chapter.index}
+                </span>
+                <h3 className="max-w-[16ch] text-[clamp(1.8rem,2.6vw,2.7rem)] leading-[1.05] tracking-[-0.045em]">
+                  {chapter.label}
+                </h3>
+                <div className="space-y-5 text-[15px] leading-7 text-white/55 lg:pt-1">
                   {chapter.paragraphs.map((paragraph) => (
-                    <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+                    <p key={paragraph.slice(0, 32)} className="max-w-[62ch]">
+                      {paragraph}
+                    </p>
                   ))}
+                  <span className="mt-2 block h-px w-0 bg-emerald-300 transition-all duration-500 group-hover:w-16" />
                 </div>
-              </article>
+              </motion.article>
             ))}
           </div>
 
-          <div className="mt-20 border-t border-white/10 pt-16">
-            <p className="max-w-[560px] text-base leading-7 text-white/55">
+          <motion.div
+            className="relative mt-16 overflow-hidden border border-white/10 px-7 py-14 sm:px-12 lg:mt-20 lg:px-16 lg:py-20"
+            {...(reduceMotion
+              ? {}
+              : {
+                  initial: { opacity: 0, y: 24 },
+                  whileInView: { opacity: 1, y: 0 },
+                  viewport: { once: true, margin: '-60px' },
+                  transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] as const },
+                })}
+          >
+            <div className="pointer-events-none absolute top-0 left-0 h-24 w-px bg-gradient-to-b from-emerald-300 to-transparent" />
+            <p className="max-w-[34rem] text-base leading-7 text-white/55">
               At Capital Holding, we invest with conviction, contribute beyond capital, and remain committed to the
               journey.
             </p>
-            <p className="mt-10 text-[clamp(2.2rem,4.2vw,4rem)] leading-[1.12] tracking-[-0.05em]">
+            <p className="mt-12 text-[clamp(2.5rem,5.2vw,5.2rem)] leading-[0.98] tracking-[-0.055em]">
               <span className="block">From the ground up.</span>
-              <span className="block text-white/40">Alongside our partners.</span>
+              <span className="block text-white/32">Alongside our partners.</span>
               <span className="block text-emerald-300">For the long term.</span>
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 

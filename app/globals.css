@@ -222,6 +222,10 @@
   animation: focus-drift 18s ease-in-out infinite alternate;
 }
 
+.about-drift {
+  animation: focus-drift 22s ease-in-out infinite alternate;
+}
+
 @keyframes hero-progress {
   from {
     width: 0%;
@@ -244,6 +248,7 @@
   .hero-drift,
   .hero-progress,
   .focus-drift,
+  .about-drift,
   .focus-card img {
     animation: none;
     transition: none;
